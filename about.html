@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About • Throttle Path</title>
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./">
+      <img src="assets/logo.svg" alt="Throttle Path logo">
+      <span>Throttle Path</span>
+    </a>
+    <nav>
+      <a href="./topics.html">Topics</a>
+      <a href="./about.html" aria-current="page">About</a>
+    </nav>
+  </header>
+
+  <main class="container prose">
+    <h1>About Throttle Path</h1>
+    <p><strong>Throttle Path</strong> curates the latest motorcycle news, race results, and new-bike launches from reputable outlets. Headlines link to original sources. Images are royalty-free via Unsplash.</p>
+    <h2>Contact</h2>
+    <p>Open an issue on the GitHub repo or email: you@example.com</p>
+    <h2>Attribution</h2>
+    <p>Photos via Unsplash Source API. Headlines © publishers; used as excerpts with links.</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="y"></span> Throttle Path.</p>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

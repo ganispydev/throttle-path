@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="36" viewBox="0 0 640 144" fill="none">
+  <rect rx="18" width="640" height="144" fill="#111827"/>
+  <text x="28" y="92" font-family="system-ui,Segoe UI,Roboto,Arial" font-weight="700" font-size="64" fill="#F59E0B">Throttle</text>
+  <text x="395" y="92" font-family="system-ui,Segoe UI,Roboto,Arial" font-weight="700" font-size="64" fill="#93C5FD">Path</text>
+</svg>

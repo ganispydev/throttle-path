@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Topics • Throttle Path</title>
+  <link rel="icon" href="assets/logo.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./">
+      <img src="assets/logo.svg" alt="Throttle Path logo">
+      <span>Throttle Path</span>
+    </a>
+    <nav>
+      <a href="./topics.html" aria-current="page">Topics</a>
+      <a href="./about.html">About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Browse by Topic</h1>
+    <div id="topics" class="topics"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="y"></span> Throttle Path.</p>
+  </footer>
+
+  <script src="js/utils.js"></script>
+  <script src="js/topics.js"></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

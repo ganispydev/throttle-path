@@ -1,0 +1,64 @@
+{
+  "posts": [
+    {
+      "id": "ktm-160-duke-launch",
+      "title": "KTM 160 Duke launched in India at ₹1.85 lakh",
+      "excerpt": "KTM enters the sub-200cc streetfighter battle with an aggressive new 160 Duke.",
+      "content": "KTM has introduced the 160 Duke in India at an ex-showroom price of ₹1.85 lakh, targeting rivals like the Yamaha MT-15. The bike features modern hardware and sharp styling. This post summarizes the key launch details and links to reputable sources.",
+      "date": "2025-08-11",
+      "author": "Throttle Path Desk",
+      "category": "Launch",
+      "tags": ["KTM","Duke","India","Launch"],
+      "cover": "./assets/sample1.jpg",
+      "source": "https://timesofindia.indiatimes.com/auto/bikes/ktm-160-duke-launched-at-rs-1-85-lakh-engine-specs-features-more/articleshow/123253067.cms"
+    },
+    {
+      "id": "jett-lawrence-2025-pro-mx-title",
+      "title": "Jett Lawrence clinches 2025 AMA Pro Motocross 450 title",
+      "excerpt": "Dominant Unadilla performance seals the 450 crown for the Aussie star.",
+      "content": "At Unadilla MX in New York, Jett Lawrence completed another commanding 1–1 to secure the 2025 AMA Pro Motocross 450 title. This recap points to official press and major outlet coverage.",
+      "date": "2025-08-17",
+      "author": "Race Desk",
+      "category": "Racing",
+      "tags": ["Motocross","AMA","Jett Lawrence","Honda"],
+      "cover": "./assets/sample2.jpg",
+      "source": "https://hondanews.com/en-US/powersports/releases/jett-lawrence-takes-back-450-ama-pro-motocross-crown"
+    },
+    {
+      "id": "moto3-perrone-pole-austria",
+      "title": "Moto3: Valentin Perrone takes maiden pole in Austria",
+      "excerpt": "Red Bull KTM Tech3 rider claims his first Grand Prix pole at the Red Bull Ring.",
+      "content": "Valentin Perrone earned his first career Moto3 pole position at the Austrian GP, marking the first Moto3 pole for Argentina since 2021.",
+      "date": "2025-08-16",
+      "author": "GP Desk",
+      "category": "Racing",
+      "tags": ["Moto3","Austria","Perrone","Qualifying"],
+      "cover": "./assets/sample3.jpg",
+      "source": "https://www.motogp.com/en/news/2025/08/16/perrone-se-apunta-su-primera-pole-en-austria/756180"
+    },
+    {
+      "id": "norton-project-zen-cancelled",
+      "title": "Norton ends Project Zen electric superbike",
+      "excerpt": "Manufacturer halts its halo electric program citing demand headwinds.",
+      "content": "Norton Motorcycles has reportedly pulled the plug on its Project Zen electric superbike program amid weak demand and shifting priorities.",
+      "date": "2025-08-10",
+      "author": "Industry Desk",
+      "category": "Industry",
+      "tags": ["Norton","Electric","EV","Superbike"],
+      "cover": "./assets/sample4.jpg",
+      "source": "https://www.reddit.com/r/Electricmotorcycles/comments/1mma5pi/norton_pulls_the_plug_on_project_zen_whats_next/"
+    },
+    {
+      "id": "bsa-bantam-350-debuts",
+      "title": "BSA Bantam 350 debuts at Bike Shed Moto Show",
+      "excerpt": "Retro-styled 350 targets the hot entry classic segment.",
+      "content": "BSA unveiled the Bantam 350 at London’s Bike Shed Moto Show, positioning it as a rival to Royal Enfield Hunter 350.",
+      "date": "2025-07-29",
+      "author": "Throttle Path Desk",
+      "category": "Launch",
+      "tags": ["BSA","Bantam 350","Bike Shed","Classic"],
+      "cover": "./assets/sample1.jpg",
+      "source": "https://timesofindia.indiatimes.com/auto/bikes/bsa-bantam-350-makes-global-debut-all-about-re-hunter-350s-new-rival/articleshow/122996876.cms"
+    }
+  ]
+}
