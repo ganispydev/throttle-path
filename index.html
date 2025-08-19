@@ -4,22 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Throttle Path — Moto News</title>
+
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="assets/logo.svg">
+  <link rel="icon" href="assets/logo-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo-192.png">
   <link rel="stylesheet" href="css/styles.css">
   <meta name="theme-color" content="#0f172a">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="./">
-      <img src="assets/logo.svg" alt="Throttle Path logo">
-      <span>Throttle Path</span>
-    </a>
-    <nav>
-      <a href="./topics.html">Topics</a>
-      <a href="./about.html">About</a>
-    </nav>
-  </header>
+  <div id="site-header"></div> <!-- header loads here -->
 
   <main class="container">
     <section class="hero">
@@ -35,16 +28,15 @@
     <nav id="pager" class="pager"></nav>
   </main>
 
-  <footer class="site-footer">
-    <p>© <span id="y"></span> Throttle Path — All news headlines © respective publishers.</p>
-  </footer>
+  <div id="site-footer"></div> <!-- footer loads here -->
 
-  <script type="module" src="js/app.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/loader.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').catch(()=>{});
     }
-    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

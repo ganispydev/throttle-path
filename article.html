@@ -4,31 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Article — Throttle Path</title>
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/logo-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo-192.png">
   <link rel="stylesheet" href="css/styles.css">
+  <meta name="theme-color" content="#0f172a">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="./">
-      <img src="assets/logo.svg" alt="Throttle Path logo">
-      <span>Throttle Path</span>
-    </a>
-    <nav>
-      <a href="./topics.html">Topics</a>
-      <a href="./about.html">About</a>
-    </nav>
-  </header>
+  <div id="site-header"></div>
 
-  <main class="container">
-    <article id="post"></article>
+  <main class="container" id="article-container">
+    <h1>Loading article...</h1>
   </main>
 
-  <footer class="site-footer">
-    <p>© <span id="y"></span> Throttle Path — All news headlines © respective publishers.</p>
-  </footer>
+  <div id="site-footer"></div>
 
-  <script type="module" src="js/article.js"></script>
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+  <script src="js/utils.js"></script>
+  <script src="js/article.js"></script>
+  <script src="js/loader.js"></script>
 </body>
 </html>
