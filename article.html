@@ -3,8 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Article • Throttle Path</title>
-  <link rel="icon" href="assets/logo.svg">
+  <title>Article — Throttle Path</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -20,19 +19,16 @@
   </header>
 
   <main class="container">
-    <article id="article"></article>
-    <nav class="article-nav">
-      <a id="prev" href="#">&larr; Prev</a>
-      <a id="next" href="#">Next &rarr;</a>
-    </nav>
+    <article id="post"></article>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="y"></span> Throttle Path.</p>
+    <p>© <span id="y"></span> Throttle Path — All news headlines © respective publishers.</p>
   </footer>
 
-  <script src="js/utils.js"></script>
-  <script src="js/article.js"></script>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script type="module" src="js/article.js"></script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

@@ -1,9 +1,20 @@
-# Throttle Path 🏍️⚡
+# 🏍️ Throttle Path
 
-A lightweight static moto-news blog. Built with vanilla HTML/CSS/JS + PWA, ready for GitHub Pages.
+Welcome to **Throttle Path** — a modern, responsive Moto blogging website that delivers the latest motorcycle news, reviews, and insights.
 
-## 🚀 Quick Start
+🔗 **Live Site:** [Throttle Path on GitHub Pages](https://ganispydev.github.io/throttle-path/)
 
-```bash
-# if you haven't already run the bootstrap script, just serve locally:
-npx serve .   # or use VS Code Live Server
+---
+
+## 🚀 Features
+
+- 📰 Real-world Moto news headlines preloaded
+- 📱 Fully responsive with Bootstrap 5
+- 🖼️ High-quality Moto images from Unsplash
+- ⚡ Fast loading with Service Worker support
+- 🔍 Categories & article pages
+- 📄 SEO-friendly structure
+
+---
+
+## 📂 Project Structure

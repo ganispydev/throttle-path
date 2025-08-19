@@ -1,18 +1,60 @@
-const CACHE = 'throttle-path-v1';
+const CACHE_NAME = 'throttlepath-v1';
 const ASSETS = [
-  './','./index.html','./about.html','./topics.html','./article.html',
-  './css/styles.css','./js/utils.js','./js/app.js','./js/article.js','./js/topics.js',
-  './data/posts.json','./assets/logo.svg'
+  './',
+  './index.html',
+  './about.html',
+  './topics.html',
+  './article.html',
+  './404.html',
+  './css/styles.css',
+  './js/utils.js',
+  './js/app.js',
+  './js/article.js',
+  './js/topics.js',
+  './assets/logo.svg',
+  './data/posts.json'
 ];
-self.addEventListener('install', e=>{
-  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));
+
+// ✅ Install event: cache assets
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+  );
 });
-self.addEventListener('activate', e=>{
-  e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));
+
+// ✅ Activate event: clean old caches
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+    )
+  );
 });
-self.addEventListener('fetch', e=>{
-  const url = new URL(e.request.url);
-  if (ASSETS.some(a=>url.pathname.endsWith(a.replace('./','/')))) {
-    e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
+
+// ✅ Fetch event with 404 + image caching
+self.addEventListener('fetch', event => {
+  if (event.request.destination === 'image') {
+    event.respondWith(
+      caches.match(event.request).then(resp => {
+        return resp || fetch(event.request).then(networkResp => {
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResp.clone());
+            return networkResp;
+          });
+        }).catch(() => caches.match('./assets/logo.svg'));
+      })
+    );
+    return;
   }
+
+  event.respondWith(
+    caches.match(event.request).then(resp => {
+      if (resp) return resp;
+      return fetch(event.request).catch(() => {
+        if (event.request.mode === 'navigate') {
+          return caches.match('./404.html');
+        }
+      });
+    })
+  );
 });
