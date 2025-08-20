@@ -1,59 +1,74 @@
-const CACHE_NAME = 'throttlepath-v1';
+// Daily cache version to flush stale assets
+const CACHE_VERSION = new Date().toISOString().slice(0,10); // YYYY-MM-DD
+const CACHE_NAME = `throttle-path-${CACHE_VERSION}`;
+
 const ASSETS = [
-  './',
-  './index.html',
-  './about.html',
-  './topics.html',
-  './article.html',
-  './404.html',
-  './css/styles.css',
-  './js/utils.js',
-  './js/app.js',
-  './js/article.js',
-  './js/topics.js',
-  './assets/logo.svg',
-  './data/posts.json'
+  "./",
+  "./index.html",
+  "./about.html",
+  "./topics.html",
+  "./article.html",
+  "./404.html",
+  "./header.html",
+  "./footer.html",
+  "./manifest.webmanifest",
+  "./assets/logo-192-v2.png",
+  "./assets/logo-512-v2.png",
+  "./css/styles.css",
+  "./js/app.js",
+  "./js/topics.js",
+  "./js/article.js",
+  "./js/loader.js",
+  "./js/utils.js",
+  "./data/posts.json"
 ];
 
-// ✅ Install event: cache assets
-self.addEventListener('install', event => {
+self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
+  self.skipWaiting();
 });
 
-// ✅ Activate event: clean old caches
-self.addEventListener('activate', event => {
+self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
       Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
     )
   );
+  self.clients.claim();
 });
 
-// ✅ Fetch event with 404 + image caching
-self.addEventListener('fetch', event => {
-  if (event.request.destination === 'image') {
+self.addEventListener("fetch", event => {
+  const url = new URL(event.request.url);
+
+  // Don't cache cache-busted requests (?v=...)
+  if (url.searchParams.has("v")) {
+    event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
+    return;
+  }
+
+  // Network-first for HTML / partials / manifest to keep fresh UI
+  if (url.pathname.endsWith(".html") || url.pathname.endsWith(".webmanifest")) {
     event.respondWith(
-      caches.match(event.request).then(resp => {
-        return resp || fetch(event.request).then(networkResp => {
-          return caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, networkResp.clone());
-            return networkResp;
-          });
-        }).catch(() => caches.match('./assets/logo.svg'));
-      })
+      fetch(event.request)
+        .then(res => {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then(c => c.put(event.request, copy));
+          return res;
+        })
+        .catch(() => caches.match(event.request))
     );
     return;
   }
 
+  // Cache-first for static assets
   event.respondWith(
-    caches.match(event.request).then(resp => {
-      if (resp) return resp;
-      return fetch(event.request).catch(() => {
-        if (event.request.mode === 'navigate') {
-          return caches.match('./404.html');
-        }
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request).then(res => {
+        const copy = res.clone();
+        caches.open(CACHE_NAME).then(c => c.put(event.request, copy));
+        return res;
       });
     })
   );

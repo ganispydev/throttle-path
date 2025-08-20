@@ -3,14 +3,35 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>404 — Page Not Found</title>
+  <title>404 — Page Not Found | Throttle Path</title>
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/logo-192-v2.png" sizes="192x192">
+  <link rel="icon" href="assets/logo-512-v2.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="assets/logo-192-v2.png">
+  <meta name="theme-color" content="#0f172a">
+
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    main { text-align:center; padding:3rem 1rem; }
+  </style>
 </head>
-<body class="error-page">
+<body>
+  <header id="site-header"></header>
+
   <main class="container">
-    <h1>404 — Page Not Found</h1>
-    <p>Oops! The page you’re looking for doesn’t exist.</p>
-    <p><a href="./">Go back to Home</a></p>
+    <h1>404</h1>
+    <p>Sorry, the page you’re looking for doesn’t exist.</p>
+    <p><a href="./">← Back to Home</a></p>
   </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="js/loader.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
 </body>
 </html>

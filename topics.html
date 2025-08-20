@@ -6,26 +6,29 @@
   <title>Topics — Throttle Path</title>
 
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="assets/logo-192.png" type="image/png">
-  <link rel="apple-touch-icon" href="assets/logo-192.png">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/logo-192-v2.png" sizes="192x192">
+  <link rel="icon" href="assets/logo-512-v2.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="assets/logo-192-v2.png">
   <meta name="theme-color" content="#0f172a">
+
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div id="site-header"></div>
+  <header id="site-header"></header>
 
   <main class="container">
-    <h1>Topics</h1>
-    <ul>
-      <li><a href="./topics.html#motogp">MotoGP</a></li>
-      <li><a href="./topics.html#motocross">Motocross</a></li>
-      <li><a href="./topics.html#reviews">Bike Reviews</a></li>
-      <li><a href="./topics.html#gear">Riding Gear</a></li>
-    </ul>
+    <h1>Browse Topics</h1>
+    <div id="topics" class="topics"></div>
   </main>
 
-  <div id="site-footer"></div>
+  <footer id="site-footer"></footer>
 
+  <script type="module" src="js/topics.js"></script>
   <script src="js/loader.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
 </body>
 </html>

@@ -6,21 +6,30 @@
   <title>About — Throttle Path</title>
 
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="assets/logo-192.png" type="image/png">
-  <link rel="apple-touch-icon" href="assets/logo-192.png">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/logo-192-v2.png" sizes="192x192">
+  <link rel="icon" href="assets/logo-512-v2.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="assets/logo-192-v2.png">
   <meta name="theme-color" content="#0f172a">
+
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div id="site-header"></div>
+  <header id="site-header"></header>
 
-  <main class="container">
+  <main class="container prose">
     <h1>About Throttle Path</h1>
-    <p>Throttle Path is your go-to hub for MotoGP, racing, and motorcycle industry news. We bring you the latest updates, reviews, and insights straight to your screen.</p>
+    <p><strong>Throttle Path</strong> curates the latest motorcycle news, race results, and new-bike launches from reputable outlets. Headlines link to original sources. Images are royalty-free via Unsplash or as attributed.</p>
+    <h2>Contact</h2>
+    <p>Open an issue on the GitHub repo or email: you@example.com</p>
   </main>
 
-  <div id="site-footer"></div>
+  <footer id="site-footer"></footer>
 
   <script src="js/loader.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
 </body>
 </html>
