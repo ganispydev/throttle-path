@@ -4,31 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Topics — Throttle Path</title>
-
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="assets/logo-192-v2.png" sizes="192x192">
-  <link rel="icon" href="assets/logo-512-v2.png" sizes="512x512">
-  <link rel="apple-touch-icon" href="assets/logo-192-v2.png">
-  <meta name="theme-color" content="#0f172a">
-
+  <link rel="icon" href="assets/logo.png">
   <link rel="stylesheet" href="css/styles.css">
+  <meta name="theme-color" content="#0f172a">
 </head>
 <body>
-  <header id="site-header"></header>
+  <div id="header"></div>
 
   <main class="container">
-    <h1>Browse Topics</h1>
-    <div id="topics" class="topics"></div>
+    <h1>Topics</h1>
+    <div id="feed" class="grid"></div>
   </main>
 
-  <footer id="site-footer"></footer>
+  <div id="footer"></div>
 
-  <script type="module" src="js/topics.js"></script>
   <script src="js/loader.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
-    }
-  </script>
+  <script type="module" src="js/topics.js"></script>
 </body>
 </html>

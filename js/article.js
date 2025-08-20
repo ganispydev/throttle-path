@@ -1,25 +1,63 @@
-import { $, readJSON, params, fmtDate } from './utils.js';
+import { $, $$, fmtDate, slugify, readJSON, params } from './utils.js';
 
-async function init(){
+async function init() {
   const id = params.get('id');
-  const data = await readJSON('./data/posts.json');
-  const idx = data.posts.findIndex(p=>String(p.id)===String(id));
-  const p = data.posts[idx];
-  if(!p){ $('#article').innerHTML='<p>Post not found.</p>'; return; }
+  let article = null;
 
-  $('#article').innerHTML = `
-    <header>
-      <h1>${p.title}</h1>
-      <p class="meta">${fmtDate(p.date)} • ${p.author} • <span class="badge">${p.category}</span></p>
-      <div class="article-hero"><img src="${p.cover}" alt="${p.title}"/></div>
-    </header>
-    <section class="article-body">
-      <p>${p.content}</p>
-      <p><a href="${p.source}" target="_blank" rel="noopener">Read original source →</a></p>
-    </section>
-  `;
-  const prevId = data.posts[idx+1]?.id, nextId = data.posts[idx-1]?.id;
-  if(prevId) $('#prev').href = `./article.html?id=${encodeURIComponent(prevId)}`; else $('#prev').style.visibility='hidden';
-  if(nextId) $('#next').href = `./article.html?id=${encodeURIComponent(nextId)}`; else $('#next').style.visibility='hidden';
+  // Try localStorage first
+  const stored = localStorage.getItem(`article_${id}`);
+  if (stored) {
+    article = JSON.parse(stored);
+  }
+
+  // Fallback to posts.json
+  if (!article) {
+    const data = await readJSON('./data/posts.json');
+    article = data.posts.find(p => p.id === id || slugify(p.title) === id);
+  }
+
+  if (!article) {
+    $('#article').innerHTML = `<p>Article not found.</p>`;
+    return;
+  }
+
+  render(article);
+  loadRelated(article);
 }
+
+function render(p) {
+  $('#article').innerHTML = `
+    <h1>${p.title}</h1>
+    <p class="meta">${fmtDate(p.date)} • ${p.author || 'Unknown'}</p>
+    <img src="${p.cover}" alt="${p.title}">
+    <p>${p.content || p.excerpt || ''}</p>
+    ${p.url ? `<p><a href="${p.url}" target="_blank">Read full article →</a></p>` : ''}
+  `;
+}
+
+async function loadRelated(current) {
+  const data = await readJSON('./data/posts.json');
+  const related = data.posts
+    .filter(p => p.id !== current.id && p.tags?.some(t => current.tags?.includes(t)))
+    .slice(0, 3);
+
+  $('#related').innerHTML = related.map(p => {
+    const id = encodeURIComponent(p.id);
+    const safeJSON = JSON.stringify(p).replace(/"/g, '&quot;');
+    return `
+    <article class="card">
+      <img src="${p.cover}" alt="${p.title}">
+      <div class="pad">
+        <h3>
+          <a href="./article.html?id=${id}" 
+             onclick='localStorage.setItem("article_${id}", "${safeJSON}")'>
+             ${p.title}
+          </a>
+        </h3>
+        <p class="meta">${fmtDate(p.date)} • ${p.author}</p>
+      </div>
+    </article>`;
+  }).join('');
+}
+
 init();

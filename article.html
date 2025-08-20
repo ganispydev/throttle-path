@@ -4,34 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Article — Throttle Path</title>
-
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="assets/logo-192-v2.png" sizes="192x192">
-  <link rel="icon" href="assets/logo-512-v2.png" sizes="512x512">
-  <link rel="apple-touch-icon" href="assets/logo-192-v2.png">
-  <meta name="theme-color" content="#0f172a">
-
+  <link rel="icon" href="assets/logo.png">
   <link rel="stylesheet" href="css/styles.css">
+  <meta name="theme-color" content="#0f172a">
 </head>
 <body>
-  <header id="site-header"></header>
+  <div id="header"></div>
 
   <main class="container">
     <article id="article"></article>
-    <nav class="article-nav">
-      <a id="prev" href="#">&larr; Prev</a>
-      <a id="next" href="#">Next &rarr;</a>
-    </nav>
+    <section>
+      <h2>Related Articles</h2>
+      <div id="related" class="grid"></div>
+    </section>
   </main>
 
-  <footer id="site-footer"></footer>
+  <div id="footer"></div>
 
-  <script type="module" src="js/article.js"></script>
   <script src="js/loader.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
-    }
-  </script>
+  <script type="module" src="js/article.js"></script>
 </body>
 </html>

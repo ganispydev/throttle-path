@@ -1,7 +1,6 @@
 <footer class="site-footer">
-  <div class="footer-brand">
-    <img src="assets/logo-192-v2.png" alt="Throttle Path logo" width="32" height="32">
-    <span>Throttle Path</span>
-  </div>
   <p>© <span id="y"></span> Throttle Path — All news headlines © respective publishers.</p>
 </footer>
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>

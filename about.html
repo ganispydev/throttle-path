@@ -4,32 +4,30 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — Throttle Path</title>
-
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="assets/logo-192-v2.png" sizes="192x192">
-  <link rel="icon" href="assets/logo-512-v2.png" sizes="512x512">
-  <link rel="apple-touch-icon" href="assets/logo-192-v2.png">
-  <meta name="theme-color" content="#0f172a">
-
+  <link rel="icon" href="assets/logo.png">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <header id="site-header"></header>
+  <!-- Load Header -->
+  <div id="header"></div>
 
-  <main class="container prose">
-    <h1>About Throttle Path</h1>
-    <p><strong>Throttle Path</strong> curates the latest motorcycle news, race results, and new-bike launches from reputable outlets. Headlines link to original sources. Images are royalty-free via Unsplash or as attributed.</p>
-    <h2>Contact</h2>
-    <p>Open an issue on the GitHub repo or email: you@example.com</p>
+  <main class="container">
+    <section class="hero">
+      <h1>About Throttle Path</h1>
+      <p>
+        Welcome to <strong>Throttle Path</strong> — your daily dose of the latest motorcycle 
+        news, MotoGP updates, reviews, and insights from around the globe.  
+      </p>
+      <p>
+        Our mission is simple: to bring every rider and enthusiast closer to the world of two wheels.  
+        From MotoGP race weekends 🏁 to classic motorcycle culture 🏍️ — you’ll find it here.
+      </p>
+    </section>
   </main>
 
-  <footer id="site-footer"></footer>
+  <!-- Load Footer -->
+  <div id="footer"></div>
 
   <script src="js/loader.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./sw.js').catch(()=>{});
-    }
-  </script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Throttle Path — Offline</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body { text-align: center; padding: 2rem; }
+    .offline { margin-top: 3rem; }
+    h1 { color: #dc2626; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./">
+      <img src="assets/logo.png" alt="Throttle Path logo">
+      <span>Throttle Path</span>
+    </a>
+  </header>
+
+  <main class="offline">
+    <h1>You’re Offline</h1>
+    <p>No internet connection detected.</p>
+    <p>You can still read cached Moto news that you opened earlier.</p>
+    <p><a href="./index.html">← Back to Home</a></p>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="y"></span> Throttle Path</p>
+  </footer>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

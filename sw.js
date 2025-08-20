@@ -1,28 +1,23 @@
-// Daily cache version to flush stale assets
-const CACHE_VERSION = new Date().toISOString().slice(0,10); // YYYY-MM-DD
-const CACHE_NAME = `throttle-path-${CACHE_VERSION}`;
-
+const CACHE_NAME = "throttle-path-v4";
 const ASSETS = [
   "./",
   "./index.html",
-  "./about.html",
   "./topics.html",
+  "./about.html",
   "./article.html",
   "./404.html",
-  "./header.html",
-  "./footer.html",
-  "./manifest.webmanifest",
-  "./assets/logo-192-v2.png",
-  "./assets/logo-512-v2.png",
+  "./offline.html",
   "./css/styles.css",
   "./js/app.js",
-  "./js/topics.js",
-  "./js/article.js",
-  "./js/loader.js",
   "./js/utils.js",
+  "./js/loader.js",
+  "./assets/logo.png",
+  "./assets/logo-192.png",
+  "./assets/logo-512.png",
   "./data/posts.json"
 ];
 
+// Install Service Worker
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
@@ -30,6 +25,7 @@ self.addEventListener("install", event => {
   self.skipWaiting();
 });
 
+// Activate and clear old caches
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -39,37 +35,28 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
+// Fetch with fallback to cache / offline / 404
 self.addEventListener("fetch", event => {
-  const url = new URL(event.request.url);
-
-  // Don't cache cache-busted requests (?v=...)
-  if (url.searchParams.has("v")) {
-    event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
-    return;
-  }
-
-  // Network-first for HTML / partials / manifest to keep fresh UI
-  if (url.pathname.endsWith(".html") || url.pathname.endsWith(".webmanifest")) {
-    event.respondWith(
-      fetch(event.request)
-        .then(res => {
-          const copy = res.clone();
-          caches.open(CACHE_NAME).then(c => c.put(event.request, copy));
-          return res;
-        })
-        .catch(() => caches.match(event.request))
-    );
-    return;
-  }
-
-  // Cache-first for static assets
   event.respondWith(
-    caches.match(event.request).then(cached => {
-      return cached || fetch(event.request).then(res => {
+    fetch(event.request)
+      .then(res => {
+        // Cache new requests in background
         const copy = res.clone();
-        caches.open(CACHE_NAME).then(c => c.put(event.request, copy));
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
         return res;
-      });
-    })
+      })
+      .catch(() => {
+        // If request exists in cache, serve it
+        return caches.match(event.request).then(cachedRes => {
+          if (cachedRes) return cachedRes;
+
+          // If it's a navigation request → offline.html
+          if (event.request.mode === "navigate") {
+            return caches.match("./offline.html");
+          }
+          // If not found, fallback to 404
+          return caches.match("./404.html");
+        });
+      })
   );
 });
